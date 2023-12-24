@@ -1,4 +1,4 @@
-package dev.anderson.openapigenerator;
+package dev.anderson.openapigenerator.repository;
 
 import dev.anderson.openapigenerator.model.Beer;
 import org.springframework.data.jpa.repository.JpaRepository;

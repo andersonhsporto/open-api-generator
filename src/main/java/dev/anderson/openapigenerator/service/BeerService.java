@@ -1,6 +1,6 @@
 package dev.anderson.openapigenerator.service;
 
-import dev.anderson.openapigenerator.BeerRepository;
+import dev.anderson.openapigenerator.repository.BeerRepository;
 import dev.anderson.openapigenerator.model.Beer;
 import java.util.List;
 import lombok.AllArgsConstructor;
