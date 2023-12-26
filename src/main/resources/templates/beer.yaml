@@ -49,6 +49,39 @@ paths:
         '405':
           description: Validation exception
       deprecated: false
+    get:
+      security:
+        - BasicAuth: [admin]   # Use OAuth with a different scope
+      tags:
+        - beer
+      summary: Find beer by ID
+      description: Returns a single beer
+      operationId: getBeerById
+      parameters:
+        - name: id
+          in: path
+          description: Id of beer in database
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Beer'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Beer'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Beer not found
+        '405':
+          description: Validation exception
+      deprecated: false
   /beer:
     put:
       tags:
@@ -93,7 +126,7 @@ paths:
       description: ''
       operationId: addBeer
       requestBody:
-        description: Add new beet to database
+        description: Add new beer to database
         content:
           application/json:
             schema:
@@ -154,3 +187,11 @@ components:
           schema:
             $ref: '#/components/schemas/Beer'
       description: Beer object that needs to be added to the store
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+
+    BearerAuth:
+      type: http
+      scheme: bearer
