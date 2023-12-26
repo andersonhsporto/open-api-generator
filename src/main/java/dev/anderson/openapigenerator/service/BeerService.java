@@ -3,6 +3,7 @@ package dev.anderson.openapigenerator.service;
 import dev.anderson.openapigenerator.repository.BeerRepository;
 import dev.anderson.openapigenerator.model.Beer;
 import java.util.List;
+import java.util.Optional;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -41,5 +42,14 @@ public class BeerService {
 
   public ResponseEntity<List<Beer>> getBeers() {
     return ResponseEntity.ok(beerRepository.findAll());
+  }
+
+  public ResponseEntity<Beer> getBeerById(Long id) {
+    Optional<Beer> entity = beerRepository.findById(id);
+
+    if (!entity.isPresent()) {
+      return ResponseEntity.notFound().build();
+    }
+    return ResponseEntity.ok(entity.get());
   }
 }
